@@ -1,2 +1,29 @@
 {% extends 'base.html.twig' %}
 
+{% block body %}
+	<div class='herobanner'>
+		<h1>Voyager de manière conviviale et écologique</h1>
+		<form action="/rechercher" method="GET">
+			<label for="depart">Départ:</label>
+			<input type="text" name="depart" id="depart" placeholder="Lieu de départ">
+
+			<label for="arrive">Arrivé:</label>
+			<input type="text" name="arrive" id="arrive" placeholder="Lieu d'arrivée">
+
+			<label for="date">Date:</label>
+			<input type="date" name="date" id="date">
+
+			<label for="nombre-personnes">Nombre de personnes:</label>
+			<select name="nombre-personnes" id="nombre-personnes">
+				<option value="1">1 personne</option>
+				<option value="2">2 personnes</option>
+				<option value="3">3 personnes</option>
+				<!-- Ajoutez les autres options selon vos besoins -->
+			</select>
+
+			<button type="submit">Rechercher</button>
+		</form>
+
+	</div>
+
+{% endblock %}
