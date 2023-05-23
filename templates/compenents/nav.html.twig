@@ -1,0 +1,30 @@
+<nav>
+	<a href="{{path('app_home')}}" class="nav-icon" aria-label="homepage" aria-current="page">
+		<img src="{{ asset('img/logo-no-background.png')}}" alt="chat icon"/>
+	</a>
+
+	<div class="main-navlinks">
+		<button type="button" class="hamburger" aria-label="Toggle Navigation" aria-expanded="false">
+			<span></span>
+			<span></span>
+			<span></span>
+		</button>
+		<div class="navlinks-container">
+			<a href="{{ path('app_home')}}" aria-current="page">Home</a>
+			<a href="{{ path('app_trajets')}}">Trajets</a>
+
+		</div>
+	</div>
+
+	<div class="nav-authentication">
+		{# <a href="#" class="user-toggler" aria-label="Sign in page">
+			<img src="ressources/user.svg" alt="user icon"/>
+		</a> #}
+		<div class="sign-btns">
+			<button type="button">
+				<a href="{{ path('app_trajets')}}">Connexion</a>
+			</button>
+			<button type="button">Inscription</button>
+		</div>
+	</div>
+</nav>
