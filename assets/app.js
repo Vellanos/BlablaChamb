@@ -10,4 +10,5 @@ import './styles/app.scss';
 import './styles/nav.scss';
 import './styles/home.scss';
 import './styles/recherche_barre.scss';
+import './styles/login.scss';
 
