@@ -6,10 +6,15 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-class User
+#[ORM\Table(name: '`user`')]
+#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
+class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -82,16 +87,47 @@ class User
         return $this;
     }
 
-    public function getRoles(): ?string
+    public function getRoles(): array
     {
-        return $this->roles;
+        // séparez les rôles par une virgule
+        $roles = explode(',', $this->roles);
+        
+        // s'assure qu'il y a au moins un rôle
+        if (empty($roles)) {
+            $roles[] = 'ROLE_USER';
+        }
+
+        return array_unique($roles);
     }
 
-    public function setRoles(string $roles): self
+    public function setRoles(array $roles): self
     {
-        $this->roles = $roles;
+        $this->roles = implode(',', $roles);
 
         return $this;
+    }
+    public function getUserIdentifier(): string
+    {
+        return $this->getEmail();
+    }
+
+    // implémentation de UserInterface
+    public function getUsername(): string
+    {
+        return $this->getEmail();
+    }
+
+
+    public function getSalt(): ?string
+    {
+        // bcrypt et argon2i n'ont pas besoin de sel
+        return null;
+    }
+
+    public function eraseCredentials()
+    {
+        // supprime toutes les données sensibles
+        // rien à faire ici pour le moment
     }
 
     public function getFirstName(): ?string
