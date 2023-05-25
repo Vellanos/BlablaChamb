@@ -16,17 +16,18 @@
 		</div>
 	</div>
 
-	<div class="nav-authentication">
+	<div
+		class="nav-authentication">
 		{# <a href="#" class="user-toggler" aria-label="Sign in page">
-			<img src="ressources/user.svg" alt="user icon"/>
-		</a> #}
+					<img src="ressources/user.svg" alt="user icon"/>
+				</a> #}
 		<div class="sign-btns">
-			<button type="button">
-				<a href="{{ path('app_login')}}">Connexion</a>
-			</button>
-			<button type="button">
-				<a href="{{ path('app_register')}}">Inscription</a>
-			</button>
+			<div>
+				<a class="lien-connexion" href="{{ path('app_login')}}">Connexion</a>
+			</div>
+			<div>
+				<a class="lien-inscription" href="{{ path('app_register')}}">Inscription</a>
+			</div>
 		</div>
 	</div>
 </nav>
