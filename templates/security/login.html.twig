@@ -4,19 +4,23 @@
 {% endblock %}
 
 {% block body %}
-	<div class="background-login">
-		<div class="conteneur-login">
-			<h1 class="titre-login">Connexion</h1>
-			<form class="form-login" method="post">
+	<div class="loginFormContainer">
+		<div class="g-3 d-flex align-items-center justify-content-center flex-column">
+			<form class="loginForm" method="post">
+				<h1 class="mb-4">Connexion</h1>
 				{% if error %}
 					<div class="error">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
 				{% endif %}
-				{# <label for="inputEmail"></label> #}
-				<input class="input-login" type="email" placeholder="Email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
-				{# <label for="inputPassword"></label> #}
-				<input class="input-login" type="password" placeholder="Mot de passe" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+				<div class="mb-3">
+				<input class="form-control" type="email" placeholder="Email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+				</div>
+				<div class="mb-3">
+				<input class="form-control" type="password" placeholder="Mot de passe" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+				</div>
+				<div class="mb-3">
 				<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-				<button class="btn-submit" type="submit">
+				</div>
+				<button class="btn btn-primary" type="submit">
 					Se connecter
 				</button>
 			</form>

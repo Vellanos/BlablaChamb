@@ -1,1 +1,55 @@
 {% extends 'base.html.twig' %}
+
+{% block body %}
+
+	<div class='trajetContainer d-flex'>
+		<div class='filtreContainer'>
+			<div class="card card-filter">
+				<div class="card-body">
+					<form>
+						<div class="form-check form-check-reverse">
+							<input class="form-check-input" type="checkbox" value="" id="reverseCheck1">
+							<label class="form-check-label" for="reverseCheck1">
+								Choix 1
+							</label>
+						</div>
+						<div class="form-check form-check-reverse">
+							<input class="form-check-input" type="checkbox" value="" id="reverseCheck1">
+							<label class="form-check-label" for="reverseCheck1">
+								Choix 2
+							</label>
+						</div>
+						<div class="form-check form-check-reverse">
+							<input class="form-check-input" type="checkbox" value="" id="reverseCheck1">
+							<label class="form-check-label" for="reverseCheck1">
+								Choix 3
+							</label>
+						</div>
+						<div class="form-check form-check-reverse">
+							<input class="form-check-input" type="checkbox" value="" id="reverseCheck1">
+							<label class="form-check-label" for="reverseCheck1">
+								Choix 4
+							</label>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		
+		<div class='cardContainer d-flex flex-column justify-content-center align-items-center' style="padding:20px 0;">
+			{% for rides in rides %}
+				<div class="card">
+					<div class="card-body">
+						<h5 class="card-title">{{rides.depart}}
+							->
+							{{rides.destination}}</h5>
+						<h6 class="card-subtitle mb-2 text-body-secondary">{{rides.price}}€</h6>
+						<p class="card-text">{{rides.driver.firstName}}</p>
+						<a href="{{path('app_home')}}" class="card-link">Plus d'infos</a>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+
+{% endblock %}

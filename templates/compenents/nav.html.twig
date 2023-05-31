@@ -10,25 +10,34 @@
 			<span></span>
 		</button>
 		<div class="navlinks-container">
-			<a href="{{ path('app_home')}}" aria-current="page">Home</a>
 			<a href="{{ path('app_trajets')}}">Trajets</a>
 
 		</div>
 	</div>
-
-	<div
-		class="nav-authentication">
-		{# <a href="#" class="user-toggler" aria-label="Sign in page">
-					<img src="ressources/user.svg" alt="user icon"/>
-				</a> #}
+	{% if not app.user %}
+	<div class="nav-authentication">
 		<div class="sign-btns">
-			<div>
+			<div class="div-connexion">
 				<a class="lien-connexion" href="{{ path('app_login')}}">Connexion</a>
 			</div>
-			<div>
+			<div class="div-inscription">
 				<a class="lien-inscription" href="{{ path('app_register')}}">Inscription</a>
 			</div>
 		</div>
 	</div>
+	{% endif %}
+
+	{% if app.user %}
+	<div class="nav-authentication">
+		<div class="sign-btns">
+			<div class="div-connexion">
+				<a class="lien-connexion" href="{{ path('app_logout')}}">Se déconnecter</a>
+			</div>
+			<div class="div-inscription">
+				<a class="lien-inscription" href="{{ path('app_dashboard')}}">Profil</a>
+			</div>
+		</div>
+	</div>
+	{% endif %}
 </nav>
 <div class="empty"></div>

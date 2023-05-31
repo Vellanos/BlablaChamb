@@ -1,15 +1,14 @@
-.loginFormContainer {
+.registerFormContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-image: url("../../public/img/Leonardo_Diffusion_Wallpaper_with_carpooling_and_ecology_3.jpg");
+    background-image: url("../../public/img/Leonardo_Diffusion_Wallpaper_with_carpooling_and_ecology_2.jpg");
     background-size: contain;
     background-position: center;
     width: 100vw;
-    height: 90vh;
 
-    .loginForm {
+    .registerForm {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -17,11 +16,11 @@
         background-color: #F4F4F4;
         min-width: 350px;
         max-width: 350px;
-        min-height: 500px;
-        max-height: 500px;
+        min-height: 700px;
+        max-height: 700px;
         border-radius: 90px;
         box-shadow: 12px 12px 2px 1px rgba(8, 8, 8, 0.2);
-        margin: 10px 0px;
+        margin: 20px 0px;
 
         @media (max-width: 400px) {
             min-width: 90vw;
@@ -31,5 +30,7 @@
         .form-control {
             box-shadow: 6px 6px 2px 1px rgba(8, 8, 8, 0.2);
         }
+
+        
     }
 }
