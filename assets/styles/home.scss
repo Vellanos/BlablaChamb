@@ -6,7 +6,7 @@
     background-image: url("../../public/img/herobanner.png");
     background-size: cover;
     background-position: center;
-    width: 100vw;   
+    width: 100vw;
     height: 90vh;
     gap: 35vh;
 
@@ -18,12 +18,16 @@
     }
 
     @media (max-width: 900px) {
+
+        height: 100vh;
+
         h1 {
             color: white;
             font-size: 65px;
             font-weight: bold;
             text-align: center;
         }
+
     }
 
     @media (max-width: 575px) {
@@ -34,4 +38,5 @@
             text-align: center;
         }
     }
+
 }

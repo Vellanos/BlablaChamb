@@ -1,5 +1,8 @@
 .trajetContainer {
-    background-color: #D9D9D9;
+    background-image: url("../../public/img/DreamShaper_v5_Background_for_webpage_cars_and_nature_colorpal_0.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 
     .filtreContainer {
         width: 50vw;
@@ -11,14 +14,13 @@
         .card-filter {
             position: fixed;
             width: 30%;
-            height: 70vh;
+            // height: 70vh;
             border-radius: 45px;
             box-shadow: 12px 12px 2px 1px rgba(8, 8, 8, 0.2);
             border: 1px solid #ccc;
         }
 
     }
-
 
     .cardContainer {
         width: 50vw;
@@ -29,6 +31,28 @@
             border-radius: 15px;
             box-shadow: 12px 12px 2px 1px rgba(8, 8, 8, 0.2);
             border: 1px solid #ccc;
+
+            .card-body {
+                .profil {
+                    gap: 5px;
+                }
+
+                .price {
+                    margin-top: 20px;
+                }
+            }
         }
+
+        .card:hover {
+            transform: scale(1.05);
+            /* Autres styles */
+        }
+    }
+
+    .profil-pic {
+        width: 40px;
+        height: 40px;
+        border: 3px solid #32B7D4;
+        border-radius: 90px;
     }
 }

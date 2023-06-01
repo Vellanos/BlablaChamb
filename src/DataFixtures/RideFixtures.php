@@ -13,11 +13,13 @@ class RideFixtures extends AbstractFixture implements DependentFixtureInterface
         for ($i = 0; $i < 10; $i ++) {
 
             $ride = new Ride();
-            $ride->setDepart($this->faker->city());
-            $ride->setDestination($this->faker->city());
+            $cities = ['Paris', 'Marseille', 'Lyon', 'Toulouse', 'Nice', 'Nantes', 'Strasbourg', 'Montpellier', 'Bordeaux', 'Lille', 'Rennes', 'Reims', 'Le Havre', 'Cergy-Pontoise', 'Saint-Étienne', 'Toulon', 'Angers', 'Grenoble', 'Dijon', 'Nîmes', 'Aix-en-Provence', 'Saint-Quentin-en-Yvelines', 'Brest', 'Limoges', 'Tours', 'Amiens', 'Perpignan', 'Metz'];
+
+            $ride->setDepart($this->faker->randomElement($cities));
+            $ride->setDestination($this->faker->randomElement($cities));
             $ride->setSeats($this->faker->numberBetween(1,7));
-            $ride->setPrice($this->faker->randomFloat(1,50));
-            $ride->setDate($this->faker->dateTime());
+            $ride->setPrice($this->faker->randomFloat(2,1,50));
+            $ride->setDate($this->faker->dateTimeBetween('+1 day', '+10 day'));
             $ride->setCreated($this->faker->dateTime());
 			$ride->setDriver($this->getReference("user_" . $this->faker->numberBetween(0, 9)));
             for ($y = 1; $y < $this->faker->numberBetween(1, 3); $y ++) {

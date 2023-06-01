@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Ride;
+use Symfony\Component\HttpFoundation\Request;
 
 #[Route('/')]
 class HomeController extends AbstractController
@@ -31,11 +32,26 @@ class HomeController extends AbstractController
         ]);
     }
 
-    #[Route('/login', name: 'app_login')]
-    public function connexion(): Response
+    #[Route('/trajets/details', name: 'app_trajets_details')]
+    public function details(EntityManagerInterface $entityManager,Request $request): Response
     {
-        return $this->render('home/login.html.twig', [
+        $rideId = ($request->query->get("Id"));
+        $repository_ride = $entityManager->getRepository(Ride::class);
+        $rides = $repository_ride->findOneBy(['id' => $rideId]);
+
+        return $this->render('home/details.html.twig', [
+            'controller_name' => 'HomeController',
+            'rides' => $rides
+        ]);
+    }
+
+    #[Route('/trajets/reservation', name: 'app_resa')]
+    public function reservation(EntityManagerInterface $entityManager,Request $request): Response
+    {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        return $this->render('home/reservation.html.twig', [
             'controller_name' => 'HomeController',
         ]);
     }
+
 }

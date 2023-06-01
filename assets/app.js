@@ -15,6 +15,7 @@ import './styles/recherche_barre.scss';
 import './styles/login.scss';
 import './styles/register.scss';
 import './styles/trajets.scss';
+import './styles/details.scss';
 
 
 
