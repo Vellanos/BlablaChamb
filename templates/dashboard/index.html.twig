@@ -4,41 +4,106 @@
 {% endblock %}
 
 {% block body %}
-	<style>
-		.example-wrapper {
-			margin: 1em auto;
-			max-width: 800px;
-			width: 95%;
-			font: 18px / 1.5 sans-serif;
-		}
-		.example-wrapper code {
-			background: #F5F5F5;
-			padding: 2px 6px;
-		}
-	</style>
+	<div class="container mt-4">
+		<h1>
+			<i class="fas fa-user-circle"></i>
+			Profil de l'utilisateur</h1>
+		<hr>
 
-	<div class="example-wrapper">
-		<h1>Hello
-			{{ controller_name }}! ✅</h1>
+		<div class="card">
+			<div class="card-body">
+				<h3 class="card-title">
+					<i class="fas fa-info-circle"></i>
+					Informations personnelles</h3>
 
-		This friendly message is coming from:
-		<ul>
-			<li>Your controller at
-				<code>
-					<a href="{{ '/home/david/Documents/Symfony/Blablachamb/blablachamb/src/Controller/DashboardController.php'|file_link(0) }}">src/Controller/DashboardController.php</a>
-				</code>
-			</li>
-			<li>Your template at
-				<code>
-					<a href="{{ '/home/david/Documents/Symfony/Blablachamb/blablachamb/templates/dashboard/index.html.twig'|file_link(0) }}">templates/dashboard/index.html.twig</a>
-				</code>
-			</li>
-		</ul>
-	</div>
+				<div class="row">
+					<div class="col-md-6">
+						<strong>
+							<i class="fas fa-user"></i>
+							Nom :</strong>
+						{{ app.user.lastName }}
+					</div>
+					<div class="col-md-6">
+						<strong>
+							<i class="fas fa-user"></i>
+							Prénom :</strong>
+						{{ app.user.firstName }}
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<strong>
+							<i class="fas fa-envelope"></i>
+							Email :</strong>
+						{{ app.user.email }}
+					</div>
+					<div class="col-md-6">
+						<strong>
+							<i class="fas fa-phone"></i>
+							Téléphone :</strong>
+						{{ app.user.phone }}
+					</div>
+				</div>
+			</div>
+		</div>
 
-	<div class="mb-3">
-		You are logged in as
-		{{ app.user.userIdentifier }},
-		<a href="{{ path('app_logout') }}">Logout</a>
+		<hr>
+
+		<div class="card mt-4">
+			<div class="card-body">
+				<h3 class="card-title">
+					<i class="fas fa-list"></i>
+					Règles</h3>
+				<ul>
+					{% for rule in app.user.rules %}
+						<li>{{ rule.name }}
+							-
+							{{ rule.description }}</li>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+
+		<hr>
+
+		<div class="card mt-4">
+			<div class="card-body">
+				<h3 class="card-title">
+					<i class="fas fa-car"></i>
+					Trajets</h3>
+				<table class="table">
+					<thead>
+						<tr>
+							<th>
+								<i class="fas fa-flag"></i>
+								Départ</th>
+							<th>
+								<i class="fas fa-flag-checkered"></i>
+								Destination</th>
+							<th>
+								<i class="fas fa-chair"></i>
+								Places disponibles</th>
+							<th>
+								<i class="fas fa-money-bill-wave"></i>
+								Prix</th>
+							<th>
+								<i class="fas fa-calendar-alt"></i>
+								Date</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for ride in app.user.rides %}
+							<tr>
+								<td>{{ ride.depart }}</td>
+								<td>{{ ride.destination }}</td>
+								<td>{{ ride.seats }}</td>
+								<td>{{ ride.price }} €</td>
+								<td>{{ ride.date.format('m-d') }}</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
 	</div>
 {% endblock %}

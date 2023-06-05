@@ -16,6 +16,6 @@ import './styles/login.scss';
 import './styles/register.scss';
 import './styles/trajets.scss';
 import './styles/details.scss';
-
+import './styles/profil.scss';
 
 
