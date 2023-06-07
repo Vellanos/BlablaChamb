@@ -17,5 +17,7 @@ import './styles/register.scss';
 import './styles/trajets.scss';
 import './styles/details.scss';
 import './styles/profil.scss';
+import './styles/form.scss';
+import './styles/form_ride.scss';
 
 

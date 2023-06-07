@@ -1,1 +1,40 @@
 {% extends 'base.html.twig' %}
+
+{% block pageTitle %}
+    {{ page_title }}
+{% endblock %}
+
+{% block body %}
+    <div class="addformbg-container car d-flex align-items-center justify-content-center">
+        <div class="col-md-6 addformbg">
+            <form action="{{path('app_add_car')}}" method="POST">
+                {{ form_start(form) }}
+
+                <div class="mb-3">
+                    {{ form_label(form.brand) }}
+                    {{ form_widget(form.brand, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.brand) }}
+                </div>
+
+                <div class="mb-3">
+                    {{ form_label(form.model) }}
+                    {{ form_widget(form.model, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.model) }}
+                </div>
+
+                <div class="mb-3">
+                    {{ form_label(form.seats) }}
+                    {{ form_widget(form.seats, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.seats) }}
+                </div>
+
+                {{ form_rest(form) }}
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+
+                {{ form_end(form) }}
+            </form>
+        </div>
+    </div>
+{% endblock %}

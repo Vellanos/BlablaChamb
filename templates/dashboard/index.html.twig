@@ -44,6 +44,7 @@
 						{{ app.user.phone }}
 					</div>
 				</div>
+				<a href="{{ path('app_edit_user') }}" class="btn btn-primary mb-3">Edit</a>
 			</div>
 		</div>
 
@@ -126,6 +127,9 @@
 							<th>
 								<i class="fas fa-calendar-alt"></i>
 								Date</th>
+							<th>
+								<i class="fas fa-clock"></i>
+								Heure</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -137,6 +141,7 @@
 								<td>{{ ride.price }}
 									€</td>
 								<td>{{ ride.date.format('m-d') }}</td>
+								<td>{{ ride.date.format('h')}}h{{ ride.date.format('m')}}</td>
 							</tr>
 						{% endfor %}
 					</tbody>

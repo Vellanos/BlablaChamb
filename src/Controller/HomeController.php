@@ -49,8 +49,10 @@ class HomeController extends AbstractController
     public function reservation(EntityManagerInterface $entityManager,Request $request): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
         return $this->render('home/reservation.html.twig', [
             'controller_name' => 'HomeController',
+            
         ]);
     }
 
