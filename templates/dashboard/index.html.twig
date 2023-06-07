@@ -52,8 +52,44 @@
 		<div class="card mt-4">
 			<div class="card-body">
 				<h3 class="card-title">
+					<i class="fas fa-car"></i>
+					Voitures</h3>
+				<a href="{{ path('app_add_car') }}" class="btn btn-primary mb-3">Ajouter une voiture</a>
+				<table class="table">
+					<thead>
+						<tr>
+							<th>
+								<i class="fas fa-car"></i>
+								Marque</th>
+							<th>
+								<i class="fas fa-car"></i>
+								Modèle</th>
+							<th>
+								<i class="fas fa-chair"></i>
+								Places disponibles</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for car in app.user.cars %}
+							<tr>
+								<td>{{ car.brand }}</td>
+								<td>{{ car.model }}</td>
+								<td>{{ car.seats }}</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<hr>
+
+		<div class="card mt-4">
+			<div class="card-body">
+				<h3 class="card-title">
 					<i class="fas fa-list"></i>
 					Règles</h3>
+					<a href="{{ path('app_add_rule') }}" class="btn btn-primary mb-3">Ajouter une règle</a>
 				<ul>
 					{% for rule in app.user.rules %}
 						<li>{{ rule.name }}
@@ -69,8 +105,9 @@
 		<div class="card mt-4">
 			<div class="card-body">
 				<h3 class="card-title">
-					<i class="fas fa-car"></i>
+					<i class="fas fa-road"></i>
 					Trajets</h3>
+					<a href="{{ path('app_add_ride') }}" class="btn btn-primary mb-3">Ajouter un trajet</a>
 				<table class="table">
 					<thead>
 						<tr>
@@ -97,7 +134,8 @@
 								<td>{{ ride.depart }}</td>
 								<td>{{ ride.destination }}</td>
 								<td>{{ ride.seats }}</td>
-								<td>{{ ride.price }} €</td>
+								<td>{{ ride.price }}
+									€</td>
 								<td>{{ ride.date.format('m-d') }}</td>
 							</tr>
 						{% endfor %}

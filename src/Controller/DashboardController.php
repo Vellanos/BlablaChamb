@@ -18,4 +18,34 @@ class DashboardController extends AbstractController
             'controller_name' => 'DashboardController',
         ]);
     }
+
+    #[Route('/dashboard/carForm', name: 'app_add_car')]
+    public function addCar(): Response
+    {
+
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        return $this->render('dashboard/Caraddform.html.twig', [
+            'controller_name' => 'DashboardController',
+        ]);
+    }
+
+    #[Route('/dashboard/ruleForm', name: 'app_add_rule')]
+    public function addRule(): Response
+    {
+
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        return $this->render('dashboard/Ruleaddform.html.twig', [
+            'controller_name' => 'DashboardController',
+        ]);
+    }
+
+    #[Route('/dashboard/rideForm', name: 'app_add_ride')]
+    public function addRide(): Response
+    {
+
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        return $this->render('dashboard/Rideaddform.html.twig', [
+            'controller_name' => 'DashboardController',
+        ]);
+    }
 }
