@@ -44,7 +44,7 @@
 		{% elseif app.user.id == rides.driver.id %}
 		<div class="d-flex btn-edit">
 			<div class="button-edition" >
-				<a href="{{ path('app_resa')}}">Editer le trajet</a>
+				<a href="{{ path('app_edit_ride', {'id': rides.id, 'from': 'details'}) }}" class="btn btn-primary mb-3">Edit</a>
 			</div>
 			<div class="button-suppression" >
 				<a href="{{ path('app_resa')}}">Supprimer</a>

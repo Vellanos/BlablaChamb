@@ -68,6 +68,9 @@
 							<th>
 								<i class="fas fa-chair"></i>
 								Places disponibles</th>
+							<th>
+								<i class="fas fa-chair"></i>
+								Edition</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -76,6 +79,9 @@
 								<td>{{ car.brand }}</td>
 								<td>{{ car.model }}</td>
 								<td>{{ car.seats }}</td>
+								<td>
+									<a href="{{ path('app_edit_car', {'id': car.id}) }}" class="btn btn-primary mb-3">Edit</a>
+								</td>
 							</tr>
 						{% endfor %}
 					</tbody>
@@ -89,17 +95,22 @@
 			<div class="card-body">
 				<h3 class="card-title">
 					<i class="fas fa-list"></i>
-					Règles</h3>
-					<a href="{{ path('app_add_rule') }}" class="btn btn-primary mb-3">Ajouter une règle</a>
+					Règles
+				</h3>
+				<a href="{{ path('app_add_rule') }}" class="btn btn-primary mb-3">Ajouter une règle</a>
 				<ul>
 					{% for rule in app.user.rules %}
-						<li>{{ rule.name }}
+						<li>
+							{{ rule.name }}
 							-
-							{{ rule.description }}</li>
+							{{ rule.description }}
+							<a href="{{ path('app_edit_rule', {'id': rule.id}) }}" class="btn btn-primary">Edit</a>
+						</li>
 					{% endfor %}
 				</ul>
 			</div>
 		</div>
+
 
 		<hr>
 
@@ -108,7 +119,7 @@
 				<h3 class="card-title">
 					<i class="fas fa-road"></i>
 					Trajets</h3>
-					<a href="{{ path('app_add_ride') }}" class="btn btn-primary mb-3">Ajouter un trajet</a>
+				<a href="{{ path('app_add_ride') }}" class="btn btn-primary mb-3">Ajouter un trajet</a>
 				<table class="table">
 					<thead>
 						<tr>
@@ -126,10 +137,13 @@
 								Prix</th>
 							<th>
 								<i class="fas fa-calendar-alt"></i>
-								Date</th>
+								Date</th>getRepository
 							<th>
 								<i class="fas fa-clock"></i>
 								Heure</th>
+							<th>
+								<i class="fas fa-clock"></i>
+								Edit</th>	
 						</tr>
 					</thead>
 					<tbody>
@@ -141,7 +155,10 @@
 								<td>{{ ride.price }}
 									€</td>
 								<td>{{ ride.date.format('m-d') }}</td>
-								<td>{{ ride.date.format('h')}}h{{ ride.date.format('m')}}</td>
+								<td>{{ ride.date.format('h')}}h{{ ride.date.format('i')}}</td>
+								<td>
+									<a href="{{path('app_edit_ride', {'id': ride.id, 'from': 'dashboard'}) }}" class="btn btn-primary mb-3">Edit</a>
+								</td>
 							</tr>
 						{% endfor %}
 					</tbody>

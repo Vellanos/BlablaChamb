@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block pageTitle %}
+    {{ page_title }}
+{% endblock %}
+
+{% block body %}
+    <div class="addformbg-container rule d-flex align-items-center justify-content-center">
+        <div class="col-md-6 addformbg">
+            <form action="{{ path('app_edit_rule', {'id': rules.id}) }}" method="POST">
+                {{ form_start(editRuleForm) }}
+                <input type="hidden" name="rule_id" value="{{ rules.id }}">
+
+                <div class="mb-3">
+                    {{ form_label(editRuleForm.name) }}
+                    {{ form_widget(editRuleForm.name, {'attr': {'class': 'form-control'}, 'value': rules.name}) }}
+                    {{ form_errors(editRuleForm.name) }}    
+                </div>
+
+                <div class="mb-3">
+                    {{ form_label(editRuleForm.description) }}
+                    {{ form_widget(editRuleForm.description, {'attr': {'class': 'form-control'}, 'value': rules.description}) }}
+                    {{ form_errors(editRuleForm.description) }}
+                </div>
+
+                {{ form_rest(editRuleForm) }}
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+
+                {{ form_end(editRuleForm) }}
+            </form>
+        </div>
+    </div>
+{% endblock %}

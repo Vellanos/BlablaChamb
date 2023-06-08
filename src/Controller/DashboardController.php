@@ -26,7 +26,7 @@ class DashboardController extends AbstractController
     {
         $this->security = $security;
     }
-    
+
     #[Route('/', name: 'app_dashboard')]
     public function profil(): Response
     {
@@ -132,19 +132,104 @@ class DashboardController extends AbstractController
         $editUserForm->handleRequest($request);
         if ($editUserForm->isSubmitted() && $editUserForm->isValid()) {
 
-            // if (!empty($editUserForm['plainPassword']->getData())) {
-            //     $password = $userPasswordHasher->hashPassword($user, $editUserForm['plainPassword']->getData());
-            //     $user->setPassword($password);
-            // }
-
             $entityManager->flush();
             return $this->redirectToRoute('app_dashboard');
         }
-        
-        
+
+
         return $this->render('dashboard/EditUserForm.html.twig', [
             'controller_name' => 'DashboardController',
             'editUserForm' => $editUserForm,
+        ]);
+    }
+
+    #[Route('/editcar/{id}', name: 'app_edit_car')]
+    public function editCar(Request $request, EntityManagerInterface $entityManager, $id): Response
+    {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
+        $car = $entityManager->getRepository(Car::class)->find($id);
+
+        if (!$car) {
+            throw $this->createNotFoundException('Car not found');
+        }
+
+        $editCarForm = $this->createForm(AddCarType::class, $car);
+        $editCarForm->handleRequest($request);
+
+        if ($editCarForm->isSubmitted() && $editCarForm->isValid()) {
+            $entityManager->flush();
+            return $this->redirectToRoute('app_dashboard');
+        }
+
+        return $this->render('dashboard/EditCarForm.html.twig', [
+            'controller_name' => 'DashboardController',
+            'editCarForm' => $editCarForm,
+            'car' => $car, // Ajout de la variable car
+        ]);
+    }
+
+    #[Route('/editrule/{id}', name: 'app_edit_rule')]
+    public function editRule(Request $request, EntityManagerInterface $entityManager, $id): Response
+    {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
+        $rule = $entityManager->getRepository(Rule::class)->find($id);
+
+        if (!$rule) {
+            throw $this->createNotFoundException('Rule not found');
+        }
+
+        $editRuleForm = $this->createForm(AddRuleType::class, $rule);
+        $editRuleForm->handleRequest($request);
+
+        if ($editRuleForm->isSubmitted() && $editRuleForm->isValid()) {
+            $entityManager->flush();
+            return $this->redirectToRoute('app_dashboard');
+        }
+
+        return $this->render('dashboard/EditRuleForm.html.twig', [
+            'controller_name' => 'DashboardController',
+            'editRuleForm' => $editRuleForm,
+            'rules' => $rule, // Ajout de la variable rule
+        ]);
+    }
+
+    #[Route('/editride/{id}/{from}', name: 'app_edit_ride', defaults: ['from' => 'dashboard'])]
+    public function editRide(Request $request, EntityManagerInterface $entityManager, $id, $from): Response
+
+    {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
+        $ride = $entityManager->getRepository(Ride::class)->find($id);
+
+        // dd($from);
+        dd($request);
+
+        if (!$ride) {
+            throw $this->createNotFoundException('Ride not found');
+        }
+
+        $editRideForm = $this->createForm(AddRideType::class, $ride);
+        $editRideForm->handleRequest($request);
+
+        if ($editRideForm->isSubmitted() && $editRideForm->isValid()) {
+            $entityManager->flush();
+            // dd($from);
+            dump($from);
+            die();
+            if ($from === 'dashboard') {
+                return $this->redirectToRoute('app_dashboard');
+            } elseif ($from === 'details') {
+                return $this->redirectToRoute('app_trajets_details', ['id' => $ride->getId()]);
+            }
+            
+        }
+
+        return $this->render('dashboard/EditRideForm.html.twig', [
+            'controller_name' => 'DashboardController',
+            'editRideForm' => $editRideForm,
+            'rides' => $ride, // Ajout de la variable rule
         ]);
     }
 }
