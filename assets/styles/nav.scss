@@ -14,7 +14,7 @@ nav {
 .empty {
   top: 0;
   height: 10vh;
-  width: 100vw;
+  width: 100%;
 }
 
 .nav-icon {
@@ -93,8 +93,7 @@ nav {
   }
 
   .empty {
-    height: 0;
-    width: 0;
+    display: none;
   }
 
   /* nav */
@@ -164,7 +163,7 @@ nav {
     transform: translate(0) rotate(-135deg);
   }
 
-  .navlinks-container {
+  .navlinks-container   {
     display: flex;
     flex-direction: column;
     align-items: flex-start;

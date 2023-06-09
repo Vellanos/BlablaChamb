@@ -8,7 +8,7 @@
     background-position: center;
     width: 100vw;
     height: 90vh;
-    gap: 35vh;
+    gap: 25vh;
 
     h1 {
         color: white;
@@ -17,8 +17,25 @@
         text-align: center;
     }
 
-    @media (max-width: 900px) {
+    .row {
+        display: flex;
+        justify-content: center;
+        
+    }
 
+    .form-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+    }
+
+    .col-lg-3 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    @media (max-width: 900px) {
         height: 100vh;
 
         h1 {
@@ -28,6 +45,10 @@
             text-align: center;
         }
 
+        .col-lg-3, .col-md-6 {
+            flex: 0 0 50%;
+            max-width: 50%;
+        }
     }
 
     @media (max-width: 575px) {
@@ -37,6 +58,17 @@
             font-weight: bold;
             text-align: center;
         }
-    }
 
+        .col-lg-3, .col-md-6, .col-sm-12 {
+            flex: 0 0 100%;
+            max-width: 100%;
+        }
+    }
+}
+
+.search {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }

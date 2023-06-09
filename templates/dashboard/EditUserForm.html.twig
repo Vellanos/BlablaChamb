@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Inscription{% endblock %}
+{% block title %}Profil{% endblock %}
 
 {% block body %}
     <div class="registerFormContainer">
         <div class="registerForm">
-            <h1 class="mb-4">Inscription</h1>
+            <h1 class="mb-4">Profil</h1>
             {{ form_start(editUserForm, {'attr': {'class': 'g-3 d-flex align-items-center justify-content-center flex-column'}}) }}
             <div class="mb-3">
                 <label for="{{ editUserForm.email.vars.id }}" class="form-label">Email</label>
@@ -36,7 +36,7 @@
                 {{ form_widget(editUserForm.phone, {'attr': {'class': 'form-control'}}) }}
             </div>
 
-            <button type="submit" class="btn btn-primary">S'inscrire</button>
+            <button type="submit" class="btn btn-success">Valider</button>
             {{ form_end(editUserForm) }}
         </div>
     </div>

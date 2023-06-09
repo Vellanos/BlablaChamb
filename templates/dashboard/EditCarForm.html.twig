@@ -1,41 +1,41 @@
 {% extends 'base.html.twig' %}
 
-{% block pageTitle %}
-    {{ page_title }}
-{% endblock %}
+{% block title %}Voiture{% endblock %}
 
 {% block body %}
-    <div class="addformbg-container car d-flex align-items-center justify-content-center">
-        <div class="col-md-6 addformbg">
-            <form action="{{ path('app_edit_car', {'id': car.id}) }}" method="POST">
-                {{ form_start(editCarForm) }}
-                <input type="hidden" name="car_id" value="{{ car.id }}">
-                
-                <div class="mb-3">
-                    {{ form_label(editCarForm.brand) }}
-                    {{ form_widget(editCarForm.brand, {'attr': {'class': 'form-control'}}) }}
-                    {{ form_errors(editCarForm.brand) }}
-                </div>
+	<div class="addformbg-container car d-flex align-items-center justify-content-center">
+		<div class="col-md-6 addformbg">
+			<form action="{{ path('app_edit_car', {'id': car.id}) }}" method="POST">
+				{{ form_start(editCarForm) }}
+				<h1 class="mb-4 text-center">Voiture</h1>
+				<input type="hidden" name="car_id" value="{{ car.id }}">
 
-                <div class="mb-3">
-                    {{ form_label(editCarForm.model) }}
-                    {{ form_widget(editCarForm.model, {'attr': {'class': 'form-control'}}) }}
-                    {{ form_errors(editCarForm.model) }}
-                </div>
+				<div class="mb-3">
+					{{ form_label(editCarForm.brand, 'Marque') }}
+					{{ form_widget(editCarForm.brand, {'attr': {'class': 'form-control'}}) }}
+					{{ form_errors(editCarForm.brand) }}
+				</div>
 
-                <div class="mb-3">
-                    {{ form_label(editCarForm.seats) }}
-                    {{ form_widget(editCarForm.seats, {'attr': {'class': 'form-control'}}) }}
-                    {{ form_errors(editCarForm.seats) }}
-                </div>
+				<div class="mb-3">
+					{{ form_label(editCarForm.model, 'Modèle') }}
+					{{ form_widget(editCarForm.model, {'attr': {'class': 'form-control'}}) }}
+					{{ form_errors(editCarForm.model) }}
+				</div>
 
-                {{ form_rest(editCarForm) }}
-                <div class="text-center">
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
+				<div class="mb-3">
+					{{ form_label(editCarForm.seats, 'Nombre de sièges') }}
+					{{ form_widget(editCarForm.seats, {'attr': {'class': 'form-control'}}) }}
+					{{ form_errors(editCarForm.seats) }}
+				</div>
 
-                {{ form_end(editCarForm) }}
-            </form>
-        </div>
-    </div>
+
+				{{ form_rest(editCarForm) }}
+				<div class="text-center">
+					<button type="submit" class="btn btn-success">Valider</button>
+				</div>
+
+				{{ form_end(editCarForm) }}
+			</form>
+		</div>
+	</div>
 {% endblock %}

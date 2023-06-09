@@ -1,19 +1,54 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Home{% endblock %}
+
 {% block body %}
 	<div class='herobanner'>
 		<h1>Voyager de manière conviviale et écologique</h1>
-		<form class="recherche" action="/rechercher" method="GET">
-			<input type="text" name="depart" id="depart" placeholder="Lieu de départ">
-			<input type="text" name="arrive" id="arrive" placeholder="Lieu d'arrivée">
-			<input type="date" name="date" id="date">
-			<select name="nombre-personnes" id="nombre-personnes">
-				<option value="1">1</option>
-				<option value="2">2</option>
-				<option value="3">3</option>
-				<!-- Ajoutez les autres options selon vos besoins -->
-			</select>
-			<button type="submit">Rechercher</button>
-		</form>
+		<div class="row mt-5">
+			<div class="col-lg-12 mx-auto">
+				{{ form_start(form) }}
+				<div class="search">
+					<div class="form-row">
+						<div class="col-lg-3 col-md-6 col-sm-12 mb-3">
+							<div class="input-group">
+								<span class="input-group-text" id="basic-addon1">
+									<i class="fas fa-map-marker-alt"></i>
+								</span>
+								{{ form_widget(form.depart, {'attr': {'class': 'form-control', 'placeholder': 'Départ', 'aria-label': 'Départ', 'aria-describedby': 'basic-addon1'}}) }}
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-6 col-sm-12 mb-3">
+							<div class="input-group">
+								<span class="input-group-text" id="basic-addon2">
+									<i class="fas fa-map-marker-alt"></i>
+								</span>
+								{{ form_widget(form.destination, {'attr': {'class': 'form-control', 'placeholder': 'Destination', 'aria-label': 'Destination', 'aria-describedby': 'basic-addon2'}}) }}
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-6 col-sm-12 mb-3">
+							<div class="input-group">
+								<span class="input-group-text" id="basic-addon3">
+									<i class="fas fa-calendar-alt"></i>
+								</span>
+								{{ form_widget(form.date, {'attr': {'class': 'form-control', 'placeholder': 'Date', 'aria-label': 'Date', 'aria-describedby': 'basic-addon3'}}) }}
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-6 col-sm-12 mb-3">
+							<div class="input-group">
+								<span class="input-group-text" id="basic-addon4">
+									<i class="fas fa-users"></i>
+								</span>
+								{{ form_widget(form.seats, {'attr': {'class': 'form-control', 'placeholder': 'Nombre de passagers', 'aria-label': 'Nombre de passagers', 'aria-describedby': 'basic-addon4'}}) }}
+							</div>
+						</div>
+					</div>
+					<div class="text-center">
+						{{ form_widget(form.submit, {'attr': {'class': 'btn btn-primary'}}) }}
+					</div>
+				</div>
+				{{ form_end(form) }}
+			</div>
+		</div>
 	</div>
 {% endblock %}

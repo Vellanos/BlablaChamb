@@ -1,7 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello DashboardController!
-{% endblock %}
+{% block title %}Dashboard{% endblock %}
 
 {% block body %}
 	<div class="container mt-4">
@@ -44,7 +43,7 @@
 						{{ app.user.phone }}
 					</div>
 				</div>
-				<a href="{{ path('app_edit_user') }}" class="btn btn-primary mb-3">Edit</a>
+				<a href="{{ path('app_edit_user') }}" class="btn btn-success mb-3"><i class="fas fa-edit"></i></a>
 			</div>
 		</div>
 
@@ -69,11 +68,11 @@
 								<i class="fas fa-chair"></i>
 								Places disponibles</th>
 							<th>
-								<i class="fas fa-chair"></i>
-								Edition</th>
+								<i class="fas fa-edit"></i>
+								Editer</th>
 							<th>
-								<i class="fas fa-chair"></i>
-								Delete</th>
+								<i class="fas fa-trash"></i>
+								Supprimer</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -83,10 +82,10 @@
 								<td>{{ car.model }}</td>
 								<td>{{ car.seats }}</td>
 								<td>
-									<a href="{{ path('app_edit_car', {'id': car.id}) }}" class="btn btn-primary mb-3">Edit</a>
+									<a href="{{ path('app_edit_car', {'id': car.id}) }}" class="btn btn-success mb-3"><i class="fas fa-edit"></i></a>
 								</td>
 								<td>
-									<a href="{{path('app_car_delete', {'id': car.id}) }}" class="btn btn-primary mb-3">Delete</a>
+									<a href="{{path('app_car_delete', {'id': car.id}) }}" class="btn btn-danger mb-3"><i class="fas fa-trash"></i></a>
 								</td>
 							</tr>
 						{% endfor %}
@@ -110,8 +109,10 @@
 							{{ rule.name }}
 							-
 							{{ rule.description }}
-							<a href="{{ path('app_edit_rule', {'id': rule.id}) }}" class="btn btn-primary">Edit</a>
-							<a href="{{path('app_rule_delete', {'id': rule.id}) }}" class="btn btn-primary mb-3">Delete</a>
+							<div>
+								<a href="{{ path('app_edit_rule', {'id': rule.id}) }}" class="btn btn-success"><i class="fas fa-edit"></i></a>
+								<a href="{{path('app_rule_delete', {'id': rule.id}) }}" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+							</div>
 						</li>
 					{% endfor %}
 				</ul>
@@ -149,11 +150,11 @@
 								<i class="fas fa-clock"></i>
 								Heure</th>
 							<th>
-								<i class="fas fa-clock"></i>
-								Edit</th>
+								<i class="fas fa-edit"></i>
+								Editer</th>
 							<th>
-								<i class="fas fa-clock"></i>
-								Delete</th>	
+								<i class="fas fa-trash"></i>
+								Supprimer</th>	
 						</tr>
 					</thead>
 					<tbody>
@@ -167,10 +168,10 @@
 								<td>{{ ride.date.format('m-d') }}</td>
 								<td>{{ ride.date.format('h')}}h{{ ride.date.format('i')}}</td>
 								<td>
-									<a href="{{path('app_edit_ride', {'id': ride.id, 'from': 'dashboard'}) }}" class="btn btn-primary mb-3">Edit</a>
+									<a href="{{path('app_edit_ride', {'id': ride.id, 'from': 'dashboard'}) }}" class="btn btn-success mb-3"><i class="fas fa-edit"></i></a>
 								</td>
 								<td>
-									<a href="{{path('app_ride_delete', {'id': ride.id}) }}" class="btn btn-primary mb-3">Delete</a>
+									<a href="{{path('app_ride_delete', {'id': ride.id}) }}" class="btn btn-danger mb-3"><i class="fas fa-trash"></i></a>
 								</td>
 							</tr>
 						{% endfor %}

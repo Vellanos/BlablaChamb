@@ -10,39 +10,41 @@
 			<span></span>
 		</button>
 		<div class="navlinks-container">
-			<div>
-			<a href="{{ path('app_trajets')}}">
-				<i class="fas fa-solid fa-eye"></i>
-				Trajets
-			</a>
-			</div>
-
+				<a href="{{ path('app_trajets') }}">
+					<i class="fas fa-route"></i>
+					Voyager
+				</a>
+				<a href="{{ path('app_add_ride') }}">
+					<i class="fas fa-plus"></i>
+					Ajouter un trajet
+				</a>
 		</div>
+
 	</div>
 	{% if not app.user %}
-	<div class="nav-authentication">
-		<div class="sign-btns">
-			<div class="div-connexion">
-				<a class="lien-connexion" href="{{ path('app_login')}}">Connexion</a>
-			</div>
-			<div class="div-inscription">
-				<a class="lien-inscription" href="{{ path('app_register')}}">Inscription</a>
+		<div class="nav-authentication">
+			<div class="sign-btns">
+				<div class="div-connexion">
+					<a class="lien-connexion" href="{{ path('app_login')}}">Connexion</a>
+				</div>
+				<div class="div-inscription">
+					<a class="lien-inscription" href="{{ path('app_register')}}">Inscription</a>
+				</div>
 			</div>
 		</div>
-	</div>
 	{% endif %}
 
 	{% if app.user %}
-	<div class="nav-authentication">
-		<div class="sign-btns">
-			<div class="div-connexion">
-				<a class="lien-connexion" href="{{ path('app_logout')}}">Se déconnecter</a>
-			</div>
-			<div class="div-inscription">
-				<a class="lien-inscription" href="{{ path('app_dashboard')}}">Profil</a>
+		<div class="nav-authentication">
+			<div class="sign-btns">
+				<div class="div-connexion">
+					<a class="lien-connexion" href="{{ path('app_logout')}}">Se déconnecter</a>
+				</div>
+				<div class="div-inscription">
+					<a class="lien-inscription" href="{{ path('app_dashboard')}}">Profil</a>
+				</div>
 			</div>
 		</div>
-	</div>
 	{% endif %}
 </nav>
 <div class="empty"></div>

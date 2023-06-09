@@ -1,14 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block pageTitle %}
-    {{ page_title }}
-{% endblock %}
+{% block title %}Règles{% endblock %}
 
 {% block body %}
     <div class="addformbg-container rule d-flex align-items-center justify-content-center">
         <div class="col-md-6 addformbg">
             <form action="{{ path('app_edit_rule', {'id': rules.id}) }}" method="POST">
                 {{ form_start(editRuleForm) }}
+                <h1 class="mb-4 text-center">Règles</h1>
                 <input type="hidden" name="rule_id" value="{{ rules.id }}">
 
                 <div class="mb-3">
@@ -25,7 +24,7 @@
 
                 {{ form_rest(editRuleForm) }}
                 <div class="text-center">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-success">Valider</button>
                 </div>
 
                 {{ form_end(editRuleForm) }}
