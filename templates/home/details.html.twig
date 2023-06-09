@@ -47,7 +47,7 @@
 				<a href="{{ path('app_edit_ride', {'id': rides.id, 'from': 'details'}) }}" class="btn btn-primary mb-3">Edit</a>
 			</div>
 			<div class="button-suppression" >
-				<a href="{{ path('app_resa')}}">Supprimer</a>
+				<a href="{{ path('app_ride_delete', {'id': rides.id, 'from': 'details'}) }}" class="btn btn-primary mb-3">Delete</a>
 			</div>
 		</div>
 		{% endif %}

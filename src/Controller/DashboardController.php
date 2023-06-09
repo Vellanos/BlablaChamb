@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 
 #[Route('/dashboard')]
 class DashboardController extends AbstractController
@@ -203,27 +203,22 @@ class DashboardController extends AbstractController
 
         $ride = $entityManager->getRepository(Ride::class)->find($id);
 
-        // dd($from);
-        dd($request);
-
         if (!$ride) {
             throw $this->createNotFoundException('Ride not found');
         }
 
-        $editRideForm = $this->createForm(AddRideType::class, $ride);
+        $editRideForm = $this->createForm(AddRideType::class, $ride, [
+            'action' => $this->generateUrl('app_edit_ride', ['from' => $from, 'id' => $ride->getId()])
+        ]);
         $editRideForm->handleRequest($request);
 
         if ($editRideForm->isSubmitted() && $editRideForm->isValid()) {
             $entityManager->flush();
-            // dd($from);
-            dump($from);
-            die();
             if ($from === 'dashboard') {
                 return $this->redirectToRoute('app_dashboard');
             } elseif ($from === 'details') {
-                return $this->redirectToRoute('app_trajets_details', ['id' => $ride->getId()]);
+                return $this->redirectToRoute('app_trajets_details', ['Id' => $ride->getId()]);
             }
-            
         }
 
         return $this->render('dashboard/EditRideForm.html.twig', [
@@ -231,5 +226,87 @@ class DashboardController extends AbstractController
             'editRideForm' => $editRideForm,
             'rides' => $ride, // Ajout de la variable rule
         ]);
+    }
+
+    #[Route('/car/delete/{id}', name: 'app_car_delete')]
+    public function carDelete(EntityManagerInterface $entityManager, int $id): Response
+    {
+        // Récupérer le répertoire de l'entité Product
+        $repository = $entityManager->getRepository(Car::class);
+
+        // Cherche un produit grâce à sa primary key
+        // La variable $id est issue du paramètre de l'url, voir l'attribut Route de la fonction
+        $car = $repository->find($id);
+
+        // On vérifie que l'on a bien récupéré un produit en base de données,
+        // si ce n'est pas le cas il n'y a pas de produit à modifier et l'on retourne une erreur à l'utilisateur
+        if (!$car) {
+            throw $this->createNotFoundException(
+                'No product found for id ' . $id
+            );
+        }
+
+        // Supprime le produit et persiste les changements
+        $entityManager->remove($car);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_dashboard');
+    }
+
+    #[Route('/rule/delete/{id}', name: 'app_rule_delete')]
+    public function ruleDelete(EntityManagerInterface $entityManager, int $id): Response
+    {
+        // Récupérer le répertoire de l'entité Product
+        $repository = $entityManager->getRepository(Rule::class);
+
+        // Cherche un produit grâce à sa primary key
+        // La variable $id est issue du paramètre de l'url, voir l'attribut Route de la fonction
+        $rule = $repository->find($id);
+
+        // On vérifie que l'on a bien récupéré un produit en base de données,
+        // si ce n'est pas le cas il n'y a pas de produit à modifier et l'on retourne une erreur à l'utilisateur
+        if (!$rule) {
+            throw $this->createNotFoundException(
+                'No product found for id ' . $id
+            );
+        }
+
+        // Supprime le produit et persiste les changements
+        $entityManager->remove($rule);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_dashboard');
+    }
+
+    #[Route('/ride/delete/{id}/{from}', name: 'app_ride_delete', defaults: ['from' => 'dashboard'])]
+    public function rideDelete(EntityManagerInterface $entityManager, int $id, string $from): Response
+    {
+        // Récupérer le répertoire de l'entité Product
+        $repository = $entityManager->getRepository(Ride::class);
+
+        // Cherche un produit grâce à sa primary key
+        // La variable $id est issue du paramètre de l'url, voir l'attribut Route de la fonction
+        $ride = $repository->find($id);
+
+        // On vérifie que l'on a bien récupéré un produit en base de données,
+        // si ce n'est pas le cas il n'y a pas de produit à modifier et l'on retourne une erreur à l'utilisateur
+        if (!$ride) {
+            throw $this->createNotFoundException(
+                'No product found for id ' . $id
+            );
+        }
+
+        
+        // Supprime le produit et persiste les changements
+        $entityManager->remove($ride);
+        $entityManager->flush();
+
+        
+        if ($from == "details") {
+            return $this->redirectToRoute('app_trajets');
+        } else {
+            return $this->redirectToRoute('app_dashboard');
+        }
+        
     }
 }

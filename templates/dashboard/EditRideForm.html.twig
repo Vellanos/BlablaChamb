@@ -7,7 +7,7 @@
 {% block body %}
     <div class="addformbg-container-ride d-flex align-items-center justify-content-center">
         <div class="col-md-6 addformbg-ride">
-            <form action="{{ path('app_edit_ride', {'id': rides.id}) }}" method="POST">
+            <form method="POST">
                 {{ form_start(editRideForm) }}
                 <input type="hidden" name="ride_id" value="{{ rides.id }}">
 

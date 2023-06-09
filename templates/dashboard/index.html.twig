@@ -71,6 +71,9 @@
 							<th>
 								<i class="fas fa-chair"></i>
 								Edition</th>
+							<th>
+								<i class="fas fa-chair"></i>
+								Delete</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -81,6 +84,9 @@
 								<td>{{ car.seats }}</td>
 								<td>
 									<a href="{{ path('app_edit_car', {'id': car.id}) }}" class="btn btn-primary mb-3">Edit</a>
+								</td>
+								<td>
+									<a href="{{path('app_car_delete', {'id': car.id}) }}" class="btn btn-primary mb-3">Delete</a>
 								</td>
 							</tr>
 						{% endfor %}
@@ -105,6 +111,7 @@
 							-
 							{{ rule.description }}
 							<a href="{{ path('app_edit_rule', {'id': rule.id}) }}" class="btn btn-primary">Edit</a>
+							<a href="{{path('app_rule_delete', {'id': rule.id}) }}" class="btn btn-primary mb-3">Delete</a>
 						</li>
 					{% endfor %}
 				</ul>
@@ -137,13 +144,16 @@
 								Prix</th>
 							<th>
 								<i class="fas fa-calendar-alt"></i>
-								Date</th>getRepository
+								Date</th>
 							<th>
 								<i class="fas fa-clock"></i>
 								Heure</th>
 							<th>
 								<i class="fas fa-clock"></i>
-								Edit</th>	
+								Edit</th>
+							<th>
+								<i class="fas fa-clock"></i>
+								Delete</th>	
 						</tr>
 					</thead>
 					<tbody>
@@ -158,6 +168,9 @@
 								<td>{{ ride.date.format('h')}}h{{ ride.date.format('i')}}</td>
 								<td>
 									<a href="{{path('app_edit_ride', {'id': ride.id, 'from': 'dashboard'}) }}" class="btn btn-primary mb-3">Edit</a>
+								</td>
+								<td>
+									<a href="{{path('app_ride_delete', {'id': ride.id}) }}" class="btn btn-primary mb-3">Delete</a>
 								</td>
 							</tr>
 						{% endfor %}

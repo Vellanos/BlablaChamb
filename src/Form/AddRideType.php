@@ -12,6 +12,7 @@ use App\Entity\Rule;
 use Symfony\Bundle\SecurityBundle\Security;
 use Doctrine\ORM\EntityRepository;
 
+
 class AddRideType extends AbstractType
 {
     public function __construct(private Security $security)
@@ -47,6 +48,7 @@ class AddRideType extends AbstractType
                         ->setParameter('user', $user);
                 },
             ])
+            
         ;
     }
 
